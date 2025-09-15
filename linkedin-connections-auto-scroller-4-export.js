@@ -1,11 +1,13 @@
 /**
  * LinkedIn Connections Auto-Scroller + CSV Export
  * -----------------------------------
- * Purpose: Export your contacts from LinkedIn.
- * 
- * Important: This follows the speed at which I do this
- *                  manually, saving me clicks. It then rate-
- *.                 limits anyway, to be respectful of LinkedIn.
+ * Purpose: Export your contacts from LinkedInץ
+ *
+ * NOTE: You *could* just download your data from them.
+ *
+ * Important: This follows the speed at which I click 
+ *             manually. It then rate-limits anyway,
+ *             to be respectful of LinkedIn.
  *
  * DO NOT GO BEYOND MANUAL SPEED!
  * DO NOT BREAK LINKEDIN TERMS OF SERVICE!
@@ -23,7 +25,7 @@
  * Author: Gadi Evron (with ChatGPT)
  * License: MIT
  * Last Updated: 2025-09-15
- * Version: 0.6
+ * Version: 0.6.1
  */
 
 (function() {
