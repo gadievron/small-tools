@@ -3,11 +3,10 @@
 // This script invites connections to LinkedIn events, and filters by specific keywords
 // so you only invite relevant people instead of spamming. It acts like a user would,
 // pressing "more" and checking boxes.
-// LinkedIn only allows about 1000 invites to be scrolled and you will invite less when
-// using this script.
 //
 // IMPORTANT: Do not break LinkedIn's terms of use. Use at your own risk.
-// IMPORTANT 2: LinkedIn only allows about 1000 invites to be sent in total per event.
+// IMPORTANT 2: LinkedIn only allows about 1000 invites to be scrolled and you will
+// invite less when using this script.
 //
 // HOW TO CUSTOMIZE THIS SCRIPT:
 //
