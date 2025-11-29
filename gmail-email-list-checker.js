@@ -3,6 +3,10 @@
  * Simple Apps Script to check if you've interacted over Gmail with the listed suspicious email addresses
  * 
  * Instructions: Paste your email list at the bottom where it says "PASTE EMAILS HERE"
+ * 
+ * By: Gadi Evron (with ChatGPT).
+ * License: MIT
+ * 
  */
 
 function checkSuspiciousEmails() {
