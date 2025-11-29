@@ -14,6 +14,10 @@
  * Note:
  * - Use responsibly. Sending invites too quickly may violate LinkedIn's terms. Their limit is 250 - respect that.
  * - This script avoids scrolling and instead works via button-clicking logic.
+ *
+ * By: Gadi Evron (with ChatGPT).
+ * License: MIT
+ *
  */
 
 (async function inviteConnectionsClickToExpand() {
