@@ -101,19 +101,61 @@ const EMAIL_REGEX = /[a-zA-Z0-9._%+\-']+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}/g;
 function onOpen() {
   SpreadsheetApp.getUi()
     .createMenu('Bounce Cleaner')
-    .addItem('Scan last 24 hours', 'scanBouncesLast24h')
+    .addItem('Scan bounces…', 'scanBouncesMenu')
     .addToUi();
 }
 
-/**** MAIN ENTRYPOINT ****/
+/**
+ * Menu entry: ask "how many days back", default 1 (last 24 hours).
+ */
+function scanBouncesMenu() {
+  const ui = SpreadsheetApp.getUi();
+  const defaultDays = 1;
+
+  const response = ui.prompt(
+    'Scan Gmail bounces',
+    'Search how many days back? (1 = last 24 hours)\nLeave blank for 1 day.',
+    ui.ButtonSet.OK_CANCEL
+  );
+
+  const button = response.getSelectedButton();
+  if (button !== ui.Button.OK) {
+    return; // user cancelled
+  }
+
+  const txt = (response.getResponseText() || '').trim();
+  let days = parseInt(txt, 10);
+
+  if (isNaN(days) || days <= 0) {
+    days = defaultDays;
+  }
+
+  scanBouncesWithDays_(days);
+}
+
+/**
+ * Direct helper: always last 24h (1 day).
+ */
 function scanBouncesLast24h() {
+  scanBouncesWithDays_(1);
+}
+
+/**** MAIN SCAN IMPLEMENTATION ****/
+function scanBouncesWithDays_(daysBack) {
   const sheet = getOrCreateSheet_(SHEET_NAME);
   initHeaderRow_(sheet);
 
+  // Build Gmail time filter from daysBack
+  const timeFilter = 'newer_than:' + daysBack + 'd';
   // Include Inbox + Spam + Trash
-  const query = 'newer_than:1d in:anywhere';
+  const query = timeFilter + ' in:anywhere';
+
   const threads = GmailApp.search(query);
-  Logger.log('scanBouncesLast24h: found threads = ' + threads.length + ' for query: ' + query);
+  Logger.log(
+    'scanBouncesWithDays_: daysBack=' + daysBack +
+    ', threads=' + threads.length +
+    ', query="' + query + '"'
+  );
 
   const senderEmail =
     SENDER_EMAIL ||
@@ -219,13 +261,15 @@ function scanBouncesLast24h() {
   }
 
   Logger.log(
-    'scanBouncesLast24h: bounceMessagesCount=' + bounceMessagesCount +
+    'scanBouncesWithDays_ summary: daysBack=' + daysBack +
+    ', bounceMessagesCount=' + bounceMessagesCount +
     ', rowsCreated=' + rowsCreated +
     ', rowsUpdated=' + rowsUpdated
   );
 
   SpreadsheetApp.getActive().toast(
-    'Scan done: ' + threads.length + ' threads, ' +
+    'Scan done (last ' + daysBack + ' day' + (daysBack === 1 ? '' : 's') + '): ' +
+    threads.length + ' threads, ' +
     bounceMessagesCount + ' bounce messages, ' +
     rowsCreated + ' new emails, ' +
     rowsUpdated + ' updated.'
