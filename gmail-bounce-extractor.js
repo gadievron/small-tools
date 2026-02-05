@@ -75,6 +75,10 @@ const BODY_INDICATOR_PHRASES = [
   'your message couldn\'t be delivered',
   'the recipient\'s email system rejected your message',
 
+  // Dutch (Outlook/Exchange)
+  'uw bericht kan niet worden bezorgd',
+  'bezorging is mislukt',
+
   // resolver family (Exchange / Cisco ESA / O365)
   'resolver.adr.',
   'recipient not found by smtp address lookup'
