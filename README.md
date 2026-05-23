@@ -3,5 +3,6 @@
 - gmail-email-list-checker.js - Simple Apps Script to check if you've interacted over Gmail with the listed suspicious email addresses
 - linkedin-connections-auto-scroller-4-export.js - A DevTools script to export your own LinkedIn connections at manual scrolling speed (or you could just go and download your data)
 - name-to-email-matcher-for-gmail.js - This is a complete overkill Apps Script to match names on a sheet to emails through Gmail
+- email-to-name-matcher-for-gmail.js - This script matches email addresses to display names using Gmail headers and Calendar guest lists
 - gmail-bounce-extractor.js - Apps Script to extract bounced emails from Gmail
-- linkedin-event-smart-inviter.js - DevTools script to invite only relevant people to attend your event. Invitations limited to about 1000, with the script you invite less
+- linkedin-event-smart-inviter.js - DevTools script to invite only relevant people to attend your event. Invitations limited to about 1000, with the script you invite less, by relevance
